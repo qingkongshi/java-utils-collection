@@ -25,6 +25,7 @@ public class MergeSort {
      * @param endIndex 排序终止位置
      */
     private static void sort(int[] arr,int[] tempArr,int startIndex,int endIndex){
+
         if(endIndex <= startIndex){
             return;
         }
@@ -72,5 +73,10 @@ public class MergeSort {
                 arr[k] = tempArr[left++];
             }
         }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {8,5,3,4,2};
+        sort(arr);
     }
 }
