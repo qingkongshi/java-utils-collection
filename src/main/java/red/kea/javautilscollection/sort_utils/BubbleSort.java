@@ -7,6 +7,8 @@ package red.kea.javautilscollection.sort_utils;
  * @Version 1.0
  * @Describe 冒泡排序：冒泡排序无疑是最为出名的排序算法之一，从序列的一端开始往另一端冒泡，依次比较相邻的两个数的大小
  * @Result 冒泡的代码还是相当简单的，两层循环，外层冒泡轮数，里层依次比较。时间复杂度为O(n^2)
+ *
+ * https://mp.weixin.qq.com/s/FVOllQoELEK3rvjpdLAxIQ
  */
 public class BubbleSort {
     /**
