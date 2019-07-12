@@ -12,5 +12,6 @@ public class RestTemplateUtils {
     public void test(){
         RestTemplate restTemplate = new RestTemplate();
 //        restTemplate.get
+
     }
 }
