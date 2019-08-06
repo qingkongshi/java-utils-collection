@@ -44,7 +44,6 @@ public class RestTemplateUtils {
 
         ResponseEntity<String> entity = restTemplate.postForEntity(apiURL, request, String.class);
 
-
         String body = entity.getBody();
 
         return body;
