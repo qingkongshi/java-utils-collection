@@ -28,7 +28,7 @@ public class RestTemplateUtils {
     private RestTemplate restTemplate;
 
     @RequestMapping("/testRestTemplate")
-    public Object   faceInfo(String startTime,String endTime,Integer size ){
+    public Object faceInfo(String startTime,String endTime,Integer size ){
         String apiURL = "https://story.hhui.top/detail?id=666106231640";
         HttpHeaders headers = new HttpHeaders();
         //设置请求头，json格式
