@@ -83,6 +83,18 @@ public class Usage {
         System.out.println(collect);
     }
 
+
+    public static void test(){
+        //        List<RepertoryFrozenNumberDTO> list = repertoryFrozenNumberDTOS.stream()
+//                .map(repertoryFrozenNumberDTO -> outboundOrderNumberVOS.stream()
+//                        .filter(outboundOrderNumberVO -> repertoryFrozenNumberDTO.getContractId().equals(outboundOrderNumberVO.getContractId()))
+//                        .findFirst()
+//                        .map(outboundOrderNumberVO -> {
+//                            repertoryFrozenNumberDTO.setNotOutNumber(outboundOrderNumberVO.getNumber());
+//                            return repertoryFrozenNumberDTO;
+//                        }).orElse(repertoryFrozenNumberDTO))
+//                .collect(Collectors.toList());
+    }
     /**
      * 获取学生集合
      */
