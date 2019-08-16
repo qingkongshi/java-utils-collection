@@ -1,0 +1,29 @@
+package red.kea.javautilscollection.lambda_handbook.bean;
+
+import lombok.Data;
+
+/**
+ * @ClassName Student
+ * @Author KeA
+ * @Date 2019/8/16 11:21
+ * @Version 1.0
+ */
+@Data
+public class Student {
+    private String name;
+    private Integer age;
+    /**
+     * 身高
+     */
+    private Integer stature;
+    private SpecialityEnum specialityEnum;
+
+    public Student() {
+    }
+
+    public Student(String name, Integer age, Integer stature) {
+        this.name = name;
+        this.age = age;
+        this.stature = stature;
+    }
+}
