@@ -3,7 +3,9 @@ package red.kea.javautilscollection.lambda_handbook.usage;
 import red.kea.javautilscollection.lambda_handbook.bean.Student;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,7 +30,8 @@ public class Usage {
 //        testCollect();
 //        testFilter();
 //        testMap();
-        testFlatMap();
+//        testFlatMap();
+        testMaxAndMin();
     }
 
     /**
@@ -73,16 +76,49 @@ public class Usage {
      * 惰性求值
      */
     public static void testFlatMap(){
-        List<Student> students = getList();
+        List<Student> studentOne = getList();
+        List<Student> studentTwo = asList(new Student("艾斯", 25, 183),
+                                          new Student("雷利", 48, 176));
 
-        List<Student> collect = Stream.of(students, asList(
-                new Student("艾斯", 25, 183),
-                new Student("雷利", 48, 176)))
-                .flatMap(students1 -> students1.stream())
+        List<Student> collect = Stream.of(studentOne, studentTwo)
+                .flatMap(studentNew -> studentNew.stream())
                 .collect(Collectors.toList());
         System.out.println(collect);
     }
 
+    /**
+     * 会在集合中求最大或最小值，使用流就很方便。
+     * 及早求值。
+     *
+     * max、min接收一个Comparator（例子中使用java8自带的静态函数，只需要传进需要比较值即可。）并且返回一个Optional对象，
+     * 该对象是java8新增的类，专门为了防止null引发的空指针异常。可以使用max.isPresent()判断是否有值；
+     * 可以使用max.orElse(new Student())，当值为null时就使用给定值；
+     * 也可以使用max.orElseGet(() -> new Student());
+     * 这需要传入一个Supplier的lambda表达式。
+     */
+    public static void testMaxAndMin(){
+        List<Student> student = getList();
+
+        Optional<Student> max = student.stream().max(Comparator.comparing(stu -> stu.getAge()));
+        Optional<Student> min = student.stream().min(Comparator.comparing(stu -> stu.getAge()));
+        if (max.isPresent()){
+            System.out.println(max.get());
+        }
+        if (min.isPresent()){
+            System.out.println(min.get());
+        }
+    }
+
+    /**
+     * 统计功能，一般都是结合filter使用，因为先筛选出我们需要的再统计即可。
+     * 及早求值
+     */
+    public static void testCount(){
+        List<Student> student = getList();
+
+        long count = student.stream().filter(stu -> stu.getAge() < 45).count();
+        System.out.println("年龄小于45岁的人数是：" +count);
+    }
 
     public static void test(){
         //        List<RepertoryFrozenNumberDTO> list = repertoryFrozenNumberDTOS.stream()
@@ -94,6 +130,11 @@ public class Usage {
 //                            return repertoryFrozenNumberDTO;
 //                        }).orElse(repertoryFrozenNumberDTO))
 //                .collect(Collectors.toList());
+
+
+
+//        List<Entity> list = new ArrayList<>();
+//        Map<Integer, String> map = list.stream().collect(Collectors.toMap(Entity::getId, Entity::getType));
     }
     /**
      * 获取学生集合
