@@ -31,7 +31,8 @@ public class Usage {
 //        testFilter();
 //        testMap();
 //        testFlatMap();
-        testMaxAndMin();
+//        testMaxAndMin();
+//        testCount();
     }
 
     /**
