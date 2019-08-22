@@ -1,11 +1,12 @@
 package red.kea.javautilscollection.lambda_handbook.usage;
 
+import red.kea.javautilscollection.lambda_handbook.bean.SpecialityEnum;
 import red.kea.javautilscollection.lambda_handbook.bean.Student;
+import red.kea.javautilscollection.lambda_handbook.pool.TestFindAnyTask;
+import red.kea.javautilscollection.lambda_handbook.pool.TestFindAnyThreadPoolExecutor;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,13 +27,49 @@ public class Usage {
      * 及早求值：得到最终的结果而不是Stream，这样的操作称为及早求值。
      */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        testCollect();
 //        testFilter();
 //        testMap();
 //        testFlatMap();
 //        testMaxAndMin();
 //        testCount();
+//        testReduce();
+//        listToMap();
+//        testMergerList();
+
+//        for (int i = 0 ;i<100;i++){
+//            testMergerList();
+//        }
+        ThreadPoolExecutor threadPoolExecutor = TestFindAnyThreadPoolExecutor.getThreadPoolExecutor();
+        for (int i = 0 ;i<20;i++){
+
+            System.out.println("提交任务: " + i);
+            threadPoolExecutor.execute(new TestFindAnyTask(i));
+        }
+        Thread.sleep(3000);
+        for (int i = 20 ;i<40;i++){
+            System.out.println("提交任务: " + i);
+            threadPoolExecutor.execute(new TestFindAnyTask(i));
+        }
+        Thread.sleep(3000);
+        for (int i = 40 ;i<60;i++){
+            System.out.println("提交任务: " + i);
+            threadPoolExecutor.execute(new TestFindAnyTask(i));
+        }
+        Thread.sleep(3000);
+        for (int i = 60 ;i<80;i++){
+            System.out.println("提交任务: " + i);
+            threadPoolExecutor.execute(new TestFindAnyTask(i));
+        }
+        Thread.sleep(3000);
+        for (int i = 80 ;i<100;i++){
+
+            System.out.println("提交任务: " + i);
+            threadPoolExecutor.execute(new TestFindAnyTask(i));
+        }
+        System.out.println("主线程结束");
+        threadPoolExecutor.shutdown();
     }
 
     /**
@@ -121,21 +158,63 @@ public class Usage {
         System.out.println("年龄小于45岁的人数是：" +count);
     }
 
-    public static void test(){
-        //        List<RepertoryFrozenNumberDTO> list = repertoryFrozenNumberDTOS.stream()
-//                .map(repertoryFrozenNumberDTO -> outboundOrderNumberVOS.stream()
-//                        .filter(outboundOrderNumberVO -> repertoryFrozenNumberDTO.getContractId().equals(outboundOrderNumberVO.getContractId()))
-//                        .findFirst()
-//                        .map(outboundOrderNumberVO -> {
-//                            repertoryFrozenNumberDTO.setNotOutNumber(outboundOrderNumberVO.getNumber());
-//                            return repertoryFrozenNumberDTO;
-//                        }).orElse(repertoryFrozenNumberDTO))
-//                .collect(Collectors.toList());
+    /**
+     * reduce 操作可以实现从一组值中生成一个值。
+     * 在上述例子中用到的 count 、 min 和 max 方法，因为常用而被纳入标准库中。
+     * 事实上，这些方法都是 reduce 操作。
+     * 及早求值。
+     */
+    public static void testReduce(){
+        Integer reduce = Stream.of(1, 2, 3, 4).reduce(0, (acc, x) -> acc + x);
+        System.out.println(reduce);
+    }
 
+    /**
+     * list转map
+     */
+    public static void listToMap(){
+        List<Student> student = getList();
+        Map<String, Integer> collect = student.stream().collect(Collectors.toMap(Student::getName, Student::getAge));
+        System.out.println(collect);
+    }
 
+    /**
+     * 对两个List进行循环,
+     * 根据符合条件,
+     * 进行相关的赋值操作并返回这个对象集合
+     *
+     * 例如：
+     * 集合A中有
+     * "路飞",22,175
+     * "红发",40,180
+     * "白胡子",50,185
+     *
+     * 集合B中有
+     * "路飞", 22, 175,SING
+     *
+     * 要将集合B中的路飞会唱歌的属性赋给集合A中的路飞，条件是名称相同
+     *
+     *
+     * 注意点。代码中的findFirst是集合B中第一个符合条件的对象
+     * 与之对应的是findAny ，findAny并不是随机地选一个，
+     * 如果是数据较少，串行地情况下，一般会返回第一个结果，
+     * 如果是并行的情况，那就不能确保是第一个。
+     */
+    public static void testMergerList(){
+        List<Student> students = getList();
+        List<Student> studentTwos = getListTwo();
 
-//        List<Entity> list = new ArrayList<>();
-//        Map<Integer, String> map = list.stream().collect(Collectors.toMap(Entity::getId, Entity::getType));
+        List<Student> collect = students.stream().parallel()
+                .map(student -> studentTwos.stream()
+                        .filter(studentTwo -> student.getName().equals(studentTwo.getName()))
+                        .findAny()
+                        .map(studentTwo -> {
+                            student.setSpecialityEnum(studentTwo.getSpecialityEnum());
+                            return student;
+                        }).orElse(student))
+                .collect(Collectors.toList());
+
+        System.out.println(collect);
     }
     /**
      * 获取学生集合
@@ -145,6 +224,16 @@ public class Usage {
         students.add(new Student("路飞",22,175));
         students.add(new Student("红发",40,180));
         students.add(new Student("白胡子",50,185));
+        return students;
+    }
+    public static List getListTwo(){
+        List<Student> students = new ArrayList<>(3);
+        Student student = new Student("路飞", 22, 175);
+        student.setSpecialityEnum(SpecialityEnum.SING);
+        students.add(student);
+        Student student2 = new Student("路飞", 22, 175);
+        student2.setSpecialityEnum(SpecialityEnum.DANCE);
+        students.add(student2);
         return students;
     }
 }
