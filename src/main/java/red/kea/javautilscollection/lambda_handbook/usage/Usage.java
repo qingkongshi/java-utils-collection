@@ -38,32 +38,8 @@ public class Usage {
 //        listToMap();
 //        testMergerList();
 
-//        for (int i = 0 ;i<100;i++){
-//            testMergerList();
-//        }
         ThreadPoolExecutor threadPoolExecutor = TestFindAnyThreadPoolExecutor.getThreadPoolExecutor();
         for (int i = 0 ;i<20;i++){
-
-            System.out.println("提交任务: " + i);
-            threadPoolExecutor.execute(new TestFindAnyTask(i));
-        }
-        Thread.sleep(3000);
-        for (int i = 20 ;i<40;i++){
-            System.out.println("提交任务: " + i);
-            threadPoolExecutor.execute(new TestFindAnyTask(i));
-        }
-        Thread.sleep(3000);
-        for (int i = 40 ;i<60;i++){
-            System.out.println("提交任务: " + i);
-            threadPoolExecutor.execute(new TestFindAnyTask(i));
-        }
-        Thread.sleep(3000);
-        for (int i = 60 ;i<80;i++){
-            System.out.println("提交任务: " + i);
-            threadPoolExecutor.execute(new TestFindAnyTask(i));
-        }
-        Thread.sleep(3000);
-        for (int i = 80 ;i<100;i++){
 
             System.out.println("提交任务: " + i);
             threadPoolExecutor.execute(new TestFindAnyTask(i));
