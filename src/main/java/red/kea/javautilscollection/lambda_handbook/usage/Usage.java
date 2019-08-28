@@ -38,14 +38,14 @@ public class Usage {
 //        listToMap();
 //        testMergerList();
 
-        ThreadPoolExecutor threadPoolExecutor = TestFindAnyThreadPoolExecutor.getThreadPoolExecutor();
-        for (int i = 0 ;i<20;i++){
-
-            System.out.println("提交任务: " + i);
-            threadPoolExecutor.execute(new TestFindAnyTask(i));
-        }
-        System.out.println("主线程结束");
-        threadPoolExecutor.shutdown();
+//        ThreadPoolExecutor threadPoolExecutor = TestFindAnyThreadPoolExecutor.getThreadPoolExecutor();
+//        for (int i = 0 ;i<20;i++){
+//
+//            System.out.println("提交任务: " + i);
+//            threadPoolExecutor.execute(new TestFindAnyTask(i));
+//        }
+//        System.out.println("主线程结束");
+//        threadPoolExecutor.shutdown();
     }
 
     /**
