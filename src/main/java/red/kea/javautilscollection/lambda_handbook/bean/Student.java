@@ -26,4 +26,11 @@ public class Student {
         this.age = age;
         this.stature = stature;
     }
+
+    public Student(String name, Integer age, Integer stature, SpecialityEnum specialityEnum) {
+        this.name = name;
+        this.age = age;
+        this.stature = stature;
+        this.specialityEnum = specialityEnum;
+    }
 }

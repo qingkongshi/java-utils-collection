@@ -46,6 +46,9 @@ public class Usage {
 //        }
 //        System.out.println("主线程结束");
 //        threadPoolExecutor.shutdown();
+//        testBlocking();
+//        testGrouping();
+        testConnectString();
     }
 
     /**
@@ -192,14 +195,68 @@ public class Usage {
 
         System.out.println(collect);
     }
+
+    /**
+     * 分块
+     * 常用的流操作是将其分解成两个集合，Collectors.partitioningBy帮我们实现了，接收一个Predicate函数式接口。
+     * □ ●   =>  □ ■
+     * ○ ■       ○ ●
+     */
+    public static void testBlocking(){
+        List<Student> students = getList();
+        Map<Boolean,List<Student>> listMap = students.stream().collect(
+                Collectors.partitioningBy(
+                        student -> student.getSpecialityEnum().toString().contains(SpecialityEnum.SING.toString())
+                )
+        );
+        System.out.println(listMap);
+    }
+
+    /**
+     * 分组
+     * 数据分组是一种更自然的分割数据操作，与将数据分成 true 和 false 两部分不同，可以使
+     * 用任意值对数据分组。Collectors.groupingBy接收一个Function做转换。
+     * □ ●      □ ■
+     * ■ △  => △ ▲
+     * ○ ▲      ○ ●
+     * 如图，我们使用groupingBy将根据进行分组为圆形一组，三角形一组，正方形一组
+     *
+     * Collectors.groupingBy与SQL 中的 group by 操作是一样的。
+     */
+    public static void testGrouping(){
+        List<Student> students = getList();
+        Map<SpecialityEnum,List<Student>> listMap = students.stream().collect(
+                Collectors.groupingBy(
+                        student -> student.getSpecialityEnum()
+                )
+        );
+        System.out.println(listMap);
+    }
+    /**
+     * 字符串拼接
+     *
+     * 如果将所有学生的名字拼接起来，怎么做呢？通常只能创建一个StringBuilder，循环拼接。
+     * 使用Stream，使用Collectors.joining()简单容易。
+     *
+     * joining接收三个参数，第一个是分界符，第二个是前缀符，第三个是结束符。
+     * 前缀符和结束符可以不传入
+     * Collectors.joining()中也可以不传入参数，这样就是直接拼接。
+     */
+    public static void testConnectString(){
+        List<Student> students = getList();
+        String names = students.stream().map(Student::getName).collect(Collectors.joining(",","{","}"));
+        System.out.println(names);
+    }
+
+
     /**
      * 获取学生集合
      */
     public static List getList(){
         List<Student> students = new ArrayList<>(3);
-        students.add(new Student("路飞",22,175));
-        students.add(new Student("红发",40,180));
-        students.add(new Student("白胡子",50,185));
+        students.add(new Student("路飞",22,175,SpecialityEnum.SING));
+        students.add(new Student("红发",40,180,SpecialityEnum.DANCE));
+        students.add(new Student("白胡子",50,185,SpecialityEnum.SING));
         return students;
     }
     public static List getListTwo(){
@@ -207,9 +264,6 @@ public class Usage {
         Student student = new Student("路飞", 22, 175);
         student.setSpecialityEnum(SpecialityEnum.SING);
         students.add(student);
-        Student student2 = new Student("路飞", 22, 175);
-        student2.setSpecialityEnum(SpecialityEnum.DANCE);
-        students.add(student2);
         return students;
     }
 }
