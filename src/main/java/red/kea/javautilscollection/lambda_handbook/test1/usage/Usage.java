@@ -1,12 +1,10 @@
-package red.kea.javautilscollection.lambda_handbook.usage;
+package red.kea.javautilscollection.lambda_handbook.test1.usage;
 
-import red.kea.javautilscollection.lambda_handbook.bean.SpecialityEnum;
-import red.kea.javautilscollection.lambda_handbook.bean.Student;
-import red.kea.javautilscollection.lambda_handbook.pool.TestFindAnyTask;
-import red.kea.javautilscollection.lambda_handbook.pool.TestFindAnyThreadPoolExecutor;
+
+import red.kea.javautilscollection.lambda_handbook.test1.bean.SpecialityEnum;
+import red.kea.javautilscollection.lambda_handbook.test1.bean.Student;
 
 import java.util.*;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -232,6 +230,7 @@ public class Usage {
         );
         System.out.println(listMap);
     }
+
     /**
      * 字符串拼接
      *
@@ -247,6 +246,7 @@ public class Usage {
         String names = students.stream().map(Student::getName).collect(Collectors.joining(",","{","}"));
         System.out.println(names);
     }
+
 
 
     /**

@@ -1,4 +1,4 @@
-package red.kea.javautilscollection.lambda_handbook.bean;
+package red.kea.javautilscollection.lambda_handbook.test1.bean;
 
 import lombok.Data;
 

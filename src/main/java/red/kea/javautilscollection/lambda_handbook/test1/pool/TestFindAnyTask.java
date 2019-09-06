@@ -1,6 +1,6 @@
-package red.kea.javautilscollection.lambda_handbook.pool;
+package red.kea.javautilscollection.lambda_handbook.test1.pool;
 
-import red.kea.javautilscollection.lambda_handbook.usage.Usage;
+import red.kea.javautilscollection.lambda_handbook.test1.usage.Usage;
 
 /**
  * @ClassName TestFindAnyTask

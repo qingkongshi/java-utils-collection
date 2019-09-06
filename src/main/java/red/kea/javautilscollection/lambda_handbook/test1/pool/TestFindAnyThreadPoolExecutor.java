@@ -1,4 +1,4 @@
-package red.kea.javautilscollection.lambda_handbook.pool;
+package red.kea.javautilscollection.lambda_handbook.test1.pool;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;

@@ -1,14 +1,14 @@
-package red.kea.javautilscollection.lambda_handbook.bean;
+package red.kea.javautilscollection.lambda_handbook.test1.bean;
 
 import lombok.Getter;
 
 /**
  * @ClassName SpecialityEnum
  * @Author KeA
- * @Date 2019/8/16 11:22
+ * @Date 2019/9/6 9:42
  * @Version 1.0
  */
 @Getter
 public enum SpecialityEnum {
-    SING,DANCE,SWIMMING,RUNNING;
+    SING,DANCE,SWIMMING,RUNNING
 }
