@@ -166,5 +166,4 @@ public class Usage {
         students.add(new Student(7, "Berserker", 700, "英国"));
         return students;
     }
-
 }
