@@ -1,5 +1,10 @@
 package red.kea.javautilscollection.bit_status;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @ClassName BitStatusUtil
  * @Description 位运算处理状态的工具类
@@ -64,23 +69,46 @@ public class BitStatusUtil {
         return (status & ALL) == ALL;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
-        long status = addStatus(NONE, CHINESE);
-        System.out.println("小明交了语文作业:" + status);
+//        long status = addStatus(NONE, CHINESE);
+//        System.out.println("小明交了语文作业:" + status);
+//
+//        status = addStatus(status, PHYSICS);
+//        System.out.println("小明又交了物理作业:" + status);
+//
+//        status = addStatus(status, HISTORY);
+//        System.out.println("小明还交了历史作业:" + status);
+//
+//        status = removeStatus(status, HISTORY);
+//        System.out.println("小明撤销了历史作业:" + status);
+//
+//        System.out.println("小明是否交了语文作业:" + hasStatus(status, CHINESE));
+//        System.out.println("小明是否交了历史作业:" + hasStatus(status, HISTORY));
+//        System.out.println("小明是否交了生物作业:" + hasStatus(status, BIOLOGY));
+//        System.out.println("小明是否交了全部作业:" + hasAllStatus(status));
 
-        status = addStatus(status, PHYSICS);
-        System.out.println("小明又交了物理作业:" + status);
+        HashMap<Integer,String> map = new HashMap<>(4);
+        map.put(1, "一");
+        map.put(5, "一");
+        map.put(9, "一");
+//        map.put(4, "一");
+        System.out.println(map);
+        //由于方法由final修饰 利用反射机制获取容量值
+        Class<?> mapType = map.getClass();
+        Method capacity = mapType.getDeclaredMethod("capacity");
+        capacity.setAccessible(true); //由于capacity方法由final修饰 暴力获取
+        System.out.println("capacity : " + capacity.invoke(map)); //capacity : 2
 
-        status = addStatus(status, HISTORY);
-        System.out.println("小明还交了历史作业:" + status);
-
-        status = removeStatus(status, HISTORY);
-        System.out.println("小明撤销了历史作业:" + status);
-
-        System.out.println("小明是否交了语文作业:" + hasStatus(status, CHINESE));
-        System.out.println("小明是否交了历史作业:" + hasStatus(status, HISTORY));
-        System.out.println("小明是否交了生物作业:" + hasStatus(status, BIOLOGY));
-        System.out.println("小明是否交了全部作业:" + hasAllStatus(status));
+        int MAXIMUM_CAPACITY = 1 << 30;
+        int cap = 10;
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        int m = (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+        System.out.println(m);
     }
 }
