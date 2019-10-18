@@ -87,6 +87,5 @@ public class BitStatusUtil {
         System.out.println("小明是否交了历史作业:" + hasStatus(status, HISTORY));
         System.out.println("小明是否交了生物作业:" + hasStatus(status, BIOLOGY));
         System.out.println("小明是否交了全部作业:" + hasAllStatus(status));
-
     }
 }
