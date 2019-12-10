@@ -8,7 +8,6 @@ package red.kea.javautilscollection.string_length_utils;
  * @Version 1.0
  */
 public class StringLengthUtils {
-
     public static int getLength(String param){
         int paramLength = 0;
         String chinese = "[\u4e00-\u9fa5]";
