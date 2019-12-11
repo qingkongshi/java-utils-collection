@@ -21,4 +21,5 @@ public class StringLengthUtils {
         }
         return paramLength;
     }
+
 }
