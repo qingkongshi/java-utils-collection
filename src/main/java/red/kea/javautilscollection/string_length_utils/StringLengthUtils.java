@@ -1,5 +1,7 @@
 package red.kea.javautilscollection.string_length_utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @ClassName StringLengthUtils
  * @Description 获取字符串所占的字节长度。一个汉字占用两个字节，一个其他的占用一个字节
@@ -21,4 +23,5 @@ public class StringLengthUtils {
         }
         return paramLength;
     }
+
 }
