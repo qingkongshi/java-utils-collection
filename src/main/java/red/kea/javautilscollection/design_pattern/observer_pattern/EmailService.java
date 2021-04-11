@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService implements ApplicationListener<UserRegisterEvent> {
 
+    // 开启异步，需要在启动类上加上允许异步
     @Async
     @Override
     public void onApplicationEvent(UserRegisterEvent userRegisterEvent) {
