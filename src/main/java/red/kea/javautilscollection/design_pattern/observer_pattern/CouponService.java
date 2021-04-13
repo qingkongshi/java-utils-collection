@@ -19,4 +19,5 @@ public class CouponService {
     public void addCoupon(UserRegisterEvent userRegisterEvent) {
         log.info("给用户 {} 发放优惠劵", userRegisterEvent.getUsername());
     }
+
 }

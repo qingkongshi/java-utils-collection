@@ -12,10 +12,9 @@ import lombok.Data;
 public class Student {
     private String name;
     private Integer age;
-    /**
-     * 身高
-     */
+    // 身高
     private Integer stature;
+    // 特长
     private SpecialityEnum specialityEnum;
 
     public Student() {
