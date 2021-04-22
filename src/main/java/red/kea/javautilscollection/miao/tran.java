@@ -18,14 +18,16 @@ public class tran {
 
     public static void main(String[] args) {
         String b64 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/=";
-        String[] codes = {"\u200b", "\u200c","\u200d"};
-//        String[] codes = {"a", "b","c"};
+//        String[] codes = {"\u200b", "\u200c","\u200d"};
+//        String[] codes = {"a","b","c"};
+        String[] codes = {"喵","呜","~"};
         per(new String[4], codes, 4 - 1);
 
 
         String a = "你好";
         System.out.println("输入：" +a);
         String encode = Base64Encoder.encode(a);
+//        System.out.println("base64:"+encode);
         StringBuffer sb = new StringBuffer();
         sb.append("喵");
         for (char ch :encode.toCharArray()){
@@ -50,7 +52,6 @@ public class tran {
         }
         System.out.println("解密："+new String(Base64Decoder.decode(result)));
     }
-    static int count = 0;
     static List<String> list = new ArrayList();
     public static void per(String[] buf, String[] chs, int len) {
         StringBuffer sb = new StringBuffer();
@@ -60,7 +61,7 @@ public class tran {
                 sb.append(buf[i]);
             }
             list.add(sb.toString());
-//            System.out.println(count++);
+//            System.out.println();
             return;
         }
         for (int i = 0; i < chs.length; i++) {
