@@ -79,6 +79,13 @@
             <artifactId>mybatis-plus</artifactId>
             <version>2.2.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.bytedeco/javacv-platform  视频取帧-->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.4.4</version>
+        </dependency>
     </dependencies>
 
     <build>
