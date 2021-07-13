@@ -15,11 +15,13 @@ import java.util.Scanner;
  */
 public class LSBEncode {
     static final String MESSAGEFILE = "e:\\lsb\\message.txt";
-    static final String COVERIMAGEFILE = "e:\\lsb\\li.jpeg";
-    static final String STEGIMAGEFILE = "e:\\lsb\\biao.png";
+    static final String COVERIMAGEFILE = "e:\\lsb\\biao.png";
+//    static final String COVERIMAGEFILE = "e:\\lsb\\li.jpeg";
+    static final String STEGIMAGEFILE = "e:\\lsb\\biao1.png";
     public static void main(String[] args) throws Exception {
 
         String contentOfMessageFile = (readMessageFile());
+        System.out.println(contentOfMessageFile);
         int[] bits=bit_Msg(contentOfMessageFile);
         System.out.println("msg in file "+contentOfMessageFile);
         for(int i=0;i<bits.length;i++)

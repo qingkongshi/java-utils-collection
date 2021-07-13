@@ -32,6 +32,10 @@ public class lsb {
             for (byte b :bytes){
                 String format = String.format("%02X", b);
                 System.out.println(format);
+                int sint=Integer.valueOf(format, 16);
+                Integer binaryInt = Integer.valueOf(Integer.toBinaryString(sint));
+                String binaryString = String.format("%08d",binaryInt);
+                System.out.println(binaryString);
                 i++;
                 if (i>10){
                     break;
