@@ -12,8 +12,8 @@ import java.io.*;
  */
 public class LSBDecode {
 
-    static final String STEGIMAGEFILE = "C:\\steg.png";
-    static final String DECODEDMESSAGEFILE = "C:\\message_dec.txt";
+    static final String STEGIMAGEFILE = "e:\\lsb\\biao1.png";
+    static final String DECODEDMESSAGEFILE = "e:\\lsb\\message1.txt";
 
     public static String b_msg="";
     public static int len = 0;
