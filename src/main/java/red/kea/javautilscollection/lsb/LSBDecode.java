@@ -84,7 +84,6 @@ public class LSBDecode {
                     String x_s=Integer.toBinaryString(blue);
                     b_msg+=x_s.charAt(x_s.length()-1);
 
-
                     currentBitEntry++;
                     //System.out.println("curre "+currentBitEntry);
                 }
