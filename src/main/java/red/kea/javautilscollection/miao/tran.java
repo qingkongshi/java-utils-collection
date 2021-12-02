@@ -52,7 +52,9 @@ public class tran {
         }
         System.out.println("解密："+new String(Base64Decoder.decode(result)));
     }
+
     static List<String> list = new ArrayList();
+
     public static void per(String[] buf, String[] chs, int len) {
         StringBuffer sb = new StringBuffer();
         if (len == -1) {
